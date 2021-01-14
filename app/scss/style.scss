@@ -1,7 +1,84 @@
-html{
-    box-sizing: border-box;
+@import 'fonts';
+@import 'vars';
+@import 'global';
+
+// Start header
+
+.header__inner{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 90px;
 }
-*, *::before, *::after{
-    box-sizing: inherit;
+.header__menu{
+    margin-left: auto;
+    margin-right: 90px;
+    
+}
+.header__btn{
+    padding: 4px;
+    border-radius: 4px;
+    font-size: 12px;
+    line-height: 24px;
+    text-align: center;
+    color: #fff;
+    font-size: 12px;
+}
+.header__btn-tariff{
+    border-radius: 24px;
+    width: 125px;
+    background-color: #efd813;
+}
+.header__btn-login{
+    width: 72px;
+    background-color: #8bc34a;
+    margin-left: 85px;
+}
+.header__btn-register{
+    width: 100px;
+    background-color: #e74c3c;
+    margin-left: 12px;
 }
 
+// End header
+
+//Section welcome
+.welcome{
+    background-color: $bg;
+}
+.welcome-bg{
+    background-image: url(../images/banner.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+.welcome__inner{
+    padding: 170px 0px 100px;
+    color:#fff;
+    text-align: center;
+    &-title{
+        font-size: 72px;
+        line-height: 72px;
+        font-weight: 700;
+        margin-bottom: 45px;
+    }
+    &-subtitle{
+        font-size: 36px;
+        margin-bottom: 90px;
+        font-weight: 500;
+    }
+    &-btn{
+        margin: 0 auto;
+        max-width: 375px;
+        border-radius: 30px;
+        background-color: #23f13c;
+        a{        
+            width: 100%; 
+            color:#fff;
+            font-size: 20px;
+            line-height: 24px;
+            font-weight: 500; 
+            padding: 18px 0px; 
+        }
+    }
+}
