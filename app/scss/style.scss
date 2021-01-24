@@ -67,12 +67,13 @@
         font-size: 36px;
         margin-bottom: 90px;
         font-weight: 500;
+        line-height: 54px;
     }
     &-btn{
         margin: 0 auto;
         max-width: 375px;
         border-radius: 30px;
-        background-color: #23f13c;
+        background-color: #12d12a;
         a{        
             width: 100%; 
             color:#fff;
@@ -80,6 +81,9 @@
             line-height: 24px;
             font-weight: 500; 
             padding: 18px 0px; 
+        }
+        &:hover{
+            background-color: #39df4f;
         }
     }
 }
@@ -133,14 +137,14 @@
 
 //Start talking-section
 .talking{
-    background-color: #fffffc;
+    background-color: #f4f6f5;
 }
 .talking__inner{
     padding: 10px 0px 70px;
     display: flex;
     justify-content: space-around;
     &-box{
-        margin-top: 120px;
+        margin-top: 70px;
         max-width: 330px;
     }
     &-title{
@@ -209,7 +213,7 @@
     &-social{
         ul{
             display: flex;
-            justify-content: space-around;
+            justify-content: space-between;
             flex-wrap: wrap;
             width: 200px;
             // margin: 0 auto;
@@ -217,6 +221,10 @@
         li{
             width: 65px;
             margin-bottom: 30px;
+            margin-left: 5px;
+        }
+        img{
+            width: 100%;
         }
     }
     &-politics{
@@ -299,7 +307,7 @@
             width: 190px;
             height: 50px;
             border: none;
-            background-color: #0674ec;
+            background-color: $bg;
             color: #fff;
             outline: none;
             border-radius: 25px;
@@ -327,7 +335,7 @@
             height: 50px;
             outline: none;  
             &:focus{
-                border: 2px solid #0674ec;
+                border: 2px solid $bg;
             }
         }
     }
@@ -336,7 +344,7 @@
         display: flex;
         justify-content: space-between;
         a{
-            color: #0674ec;
+            color: $bg;
         }
     }
     &-recovery{
@@ -345,7 +353,7 @@
     &-auth{
         padding: 0px 55px 35px;
         a{
-            color: #0674ec;
+            color: $bg;
         } 
     }
 }
