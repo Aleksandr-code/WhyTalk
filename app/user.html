@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WhyTalk</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/libs.min.css">
+    <link rel="stylesheet" href="css/style.min.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header__inner">
+                <div class="header__logo">
+                    <a href="#">
+                        <img src="images/logo.png" alt="">
+                    </a>
+                </div>
+                <nav class="header__menu">
+                    
+                </nav>
+                <div class="header__box">
+                    <a class="header__btn header__btn-tariff" href="#">Тарифные планы</a>
+                    <a class="user" href="#">
+                        <div class="user__inner">
+                            <div class="user__images">
+                                <img src="images/user-photo.jpg" alt="">
+                            </div>
+                            <div class="user__name">
+                                Alexandr Malets
+                            </div>
+                        </div>
+                    </a>
+                    <a class="header__btn header__btn-logout" href="#">Выход</a>
+                    <a class="header__btn header__btn-login" href="#">Вход</a>
+                    <a class="header__btn header__btn-register" href="#">Регистрация</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="user-page">
+        <div class="container">
+            <div class="user-page__inner">
+
+                <aside class="user-page__aside">
+
+                    <div class="conference aside__item">
+                        <div class="aside__title">
+                            Конференции
+                        </div>
+                        <ul class="conference__list">
+                            <li>
+                                <a href="#">Список конференций</a>
+                            </li>
+                            <li>
+                                <a href="#">Новая конференция</a>
+                            </li>
+                        </ul>
+                    </div>
+    
+                    <div class="profile aside__item">
+                        <div class="aside__title">
+                            Профиль 
+                        </div>
+                        <ul class="profile__list">
+                            <li>
+                                <a href="#">Личная информация</a>
+                            </li>
+                            <li>
+                                <a href="#">Настройки аккаунта</a>
+                            </li>
+                        </ul>
+                    </div>
+    
+                    <div class="ad-banner aside__item">
+                        <img src="images/ad-banner.jpg" alt="">
+                    </div>
+    
+                </aside>
+    
+                <div class="user-page__content">
+                    <div class="no-conference" style="display: none;">
+                        <div class="no-conference__img">
+                            <img src="images/no-conference-img.png" alt="">
+                        </div>
+                        <div class="no-conference__title">
+                            Конференции не найдены
+                        </div>
+                        <div class="no-conference__subtitle">
+                            Для появления списка конференций создайте новую
+                        </div>
+                        <a class="no-conference__button" href="#">Создать</a>
+                    </div>
+
+                    <div class="list-conference" style="display: none;">
+                        <div class="list-conference__title">
+                            Список конференций
+                        </div>
+                        <div class="list-conference__table">
+                            <table>
+                                <tr>
+                                    <th>Название конференции</th>
+                                    <th>Дата</th>
+                                    <th>Время</th>
+                                    <th>Редактировать</th>
+                                    <th>Удалить</th>
+                                </tr>
+                                <tr>
+                                    <td>TableData</td>
+                                    <td>TableData</td>
+                                    <td>TableData</td>
+                                    <td><a href="#">редактировать</a></td>
+                                    <td><a href="#">удалить</a></td>
+                                </tr>
+                                <tr>
+                                    <td>TableData</td>
+                                    <td>TableData</td>
+                                    <td>TableData</td>
+                                    <td><a href="#">редактировать</a></td>
+                                    <td><a href="#">удалить</a></td>
+                                </tr>
+                                <tr>
+                                    <td>TableData</td>
+                                    <td>TableData</td>
+                                    <td>TableData</td>
+                                    <td><a href="#">редактировать</a></td>
+                                    <td><a href="#">удалить</a></td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="list-conference__pagination">
+                            <ul class="pagination__list">
+                                <li><a class="active" href="#">1</a></li>
+                                <li><a href="#">2</a></li>
+                                <li><a href="#">3</a></li>
+                                <li><a href="#">4</a></li>
+                              </ul>
+                        </div>
+                    </div>
+
+                    <div class="add-conference" style="display: none;">
+                        <div class="add-conference__title">
+                            Создание новой конференции
+                        </div>
+                        <div class="add-conference__form">
+                            <form action="">
+                                <div class="add-conference__form-name">
+                                    Название конференции 
+                                </div>
+                                <div class="add-conference__form-input">
+                                     <input type="text" placeholder="Введите (при желании) имя концеренции здесь ...">
+                                </div>
+                                <div class="add-conference__form-name">
+                                    Дата начала 
+                                </div>
+                                <div class="add-conference__form-input">
+                                    <input type="date">
+                                </div>
+                                <div class="add-conference__form-name">
+                                    Время начала 
+                                </div>
+                                <div class="add-conference__form-input">
+                                    <input type="time">
+                                </div>
+                                <button type="submit">Сохранить</button>
+                            </form>
+                        </div>
+                    </div>
+
+                    <div class="user-info" style="display: none;">
+                        <div class="user-info__title">
+                            Личная информация
+                        </div>
+                        <div class="user-info__form">
+                            <form action="">
+                                <div class="user-info__form-inner">
+                                    <div class="user-info__form-inner-left">
+                                        <div class="user-info__form-name">
+                                            ФИО
+                                        </div>
+                                        <div class="user-info__form-input">
+                                            <input type="text" placeholder="Введите ФИО...">
+                                        </div>
+                                        <div class="user-info__form-name">
+                                            Имя пользователя
+                                        </div>
+                                        <div class="user-info__form-input">
+                                            <input type="text" placeholder="Введите имя пользователя..." readonly>
+                                        </div>
+                                        <div class="user-info__form-name">
+                                            Email
+                                        </div>
+                                        <div class="user-info__form-input">
+                                            <input type="text" placeholder="Email" readonly>
+                                        </div>
+                                    </div>
+                                    <div class="user-info__form-inner-right">
+                                        <div class="user-info__form-name">
+                                            Аватар
+                                        </div>
+                                        <img src="#" alt="">
+                                        <div class="user-info__form-file">
+                                            <input type="file">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="user-info__form-name">
+                                    О себе
+                                    <div class="user-info__form-textarea">
+                                        <textarea name="" rows="8"></textarea>
+                                    </div>
+                                </div>
+                                <button type="submit">Сохранить</button>
+                            </form>
+                        </div>
+                    </div>
+
+                    <div class="user-setting">
+                        <div class="user-setting__title">
+                            Настройки аккаунта
+                        </div>
+                        <div class="user-setting__type-account-title">
+                            Тип аккаунта:
+                        </div>
+                        <div class="user-setting__type-account">
+                            Начальный
+                        </div>
+                        <a href="#">Изменить</a>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer__top">
+            <div class="container">
+                <div class="footer__inner">
+                    <div class="footer__item">
+                        <div class="footer__item-title">
+                            <div class="footer__logo">
+                                <a href="#">
+                                    <img src="images/logo.png" alt="">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="footer__item-text">
+                            Nunc placerat mi id nisi interdum they mollis. 
+                            Praesent pharetra, justo ut scel erisque the 
+                            mattis, leo quam.
+                        </div>
+                        <div class="footer__item-address">
+                            <ul>
+                                <li class="address-email">support@whytalk.com</li>
+                                <li class="address-location">Kazakhstan, Kostanay</li>
+                            </ul>
+                        </div>    
+                    </div>
+
+                    <div class="footer__item">
+                        <div class="footer__item-title">
+                            Мы в социальных сетях
+                        </div>
+                        <div class="footer__item-social">
+                            <ul>
+                                <li><a href="#"><img src="images/social/vk.png" alt=""></a></li>
+                                <li><a href="#"><img src="images/social/youtube.png" alt=""></a></li>
+                                <li><a href="#"><img src="images/social/telegram.png" alt=""></a></li>
+                                <li><a href="#"><img src="images/social/whatsapp.png" alt=""></a></li>
+                            </ul>
+                        </div>    
+                    </div>
+                    
+                    <div class="footer__item">
+                        <div class="footer__item-title">
+                            Политика
+                        </div>
+                        <div class="footer__item-politics">
+                            <ul>
+                                <li><a href="#">Условия использования</a></li>
+                                <li><a href="#">Конфеденциальность</a></li>
+                                <li><a href="#">Правила</a></li>
+                            </ul>
+                        </div>    
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="footer__bottom">
+            <div class="container">
+                <div class="footer__bottom-text">
+                    &copy;2021 WhyTalk. Все права защищены. Created by Malets Alexandr
+                </div>    
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>    
+    <script src="js/libs.min.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

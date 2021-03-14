@@ -12,22 +12,24 @@
 }
 .header__menu{
     margin-left: auto;
-    margin-right: 90px;
-    
+    margin-right: 90px;   
+}
+.header__box{
+    display: flex;
+    align-items: center;
 }
 .header__btn{
     padding: 4px;
     border-radius: 4px;
-    font-size: 12px;
+    font-size: 14px;
     line-height: 24px;
     text-align: center;
     color: #fff;
-    font-size: 12px;
 }
 .header__btn-tariff{
     border-radius: 24px;
-    width: 125px;
-    background-color: #efd813;
+    width: 150px;
+    background-color: #dbc50f;
 }
 .header__btn-login{
     width: 72px;
@@ -38,6 +40,37 @@
     width: 100px;
     background-color: #e74c3c;
     margin-left: 12px;
+}
+.header__btn-logout{
+    width: 72px;
+    background-color: #e74c3c;
+    margin-left: 30px;
+}
+.user{
+    width: 170px;
+    margin-left: 75px;
+    transition: all 0.4s;
+    &__inner{
+        display: flex;
+        padding-top: 10px;
+        padding-right: 10px;
+    }
+    &__images img{
+        margin: 0px 15px;
+        width: 34px;
+        height: 34px;
+        border-radius: 50%;
+        overflow: hidden;
+    }
+    &__name{
+        font-size: 14px;
+        line-height: 18px;
+        font-weight: 500;
+        color: #222222;
+    }
+    &:hover{
+        background-color: #fcfbfb;
+    }
 }
 
 // End header
@@ -326,7 +359,7 @@
         span {
             margin-left: 10px;
         }
-        input[type="text"], input[type="password"], input[type="email"],{
+        input[type="text"], input[type="password"], input[type="email"]{
             border: none;
             border-radius: 4px;
             width: 100%;
@@ -359,3 +392,239 @@
 }
 
 //End login-page and register-page
+
+// Start user-page
+
+.user-page{
+    background-color: #f4f6f5;
+    color:#263238;
+}
+.user-page__inner{
+    display: flex;
+    padding: 110px 0px 115px;
+}
+.user-page__aside{
+    margin-right: 30px;
+}
+.aside__item{
+    background-color: #fff;
+    border: 1px solid #dedede;
+    width: 270px;
+    margin-bottom: 35px;
+}
+.aside__title{
+    padding: 20px 28px;
+    font-size: 20px;
+    font-weight: 700;
+    border-bottom: 5px solid #03a9f4;
+}
+.conference__list, .profile__list{
+    li{
+        border-bottom: 1px solid #dedede; 
+    }
+    a{
+       padding: 25px 30px;
+       min-width: 100%;
+       transition: all 0.4s;
+    }
+    a:hover{
+        background-color: #fcfbfb;
+    }
+}
+.ad-banner{
+    padding: 0px;
+    height: 270px;
+    img {
+        width: 100%;
+    }
+}
+.user-page__content{
+    width: 100%;
+    background-color: #fff;
+}
+
+.no-conference{
+    text-align: center;
+    color: #000;
+    &__img{
+        margin: 80px 0px 30px;
+    }
+    &__title{
+        font-size: 24px;
+        font-weight: 500;
+        margin-bottom: 30px;
+    }
+    &__subtitle{
+        font-size: 14px;
+        margin-bottom: 30px;
+    }
+    &__button{
+        width: 130px;
+        color: #fff;
+        background-color: #4aa2c3;
+        padding: 15px 0px;
+        line-height: 15px;
+        font-size: 15px;
+        font-weight: 500;
+    }
+}
+
+.list-conference{
+    &__title{
+        padding: 45px 0px 25px 20px;
+        font-weight: 500;
+        font-size: 36px;
+    }
+    &__table{
+        padding: 0px 20px;
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            tr:not(:first-child):hover{
+                background-color: #e8ebf0;
+            }
+            tr th{
+                text-align: left;
+                padding: 10px;
+                border-bottom: 1px solid #e8ebf0;
+            }
+            tr td{
+                font-size: 14px;
+                padding: 5px 10px;
+                border: 1px solid #e8ebf0;
+            }
+            a{
+                color: #3f51b5;
+            }
+        }
+    }
+    &__pagination{
+        padding: 25px 20px;
+        .pagination__list{
+            li{
+                display: inline-block;
+                & + li{
+                  margin-left: 6px;
+                }
+            }
+            a{
+                box-shadow: 0px 1px 2px 0px rgba(205, 214, 222, 0.75);
+                width: 43px;
+                height: 38px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background-color: #fff;
+                font-size: 16px;
+                font-weight: 500;
+                color: #000;
+                &.active{
+                    background-color: #e74c3c;
+                    color: #fff;
+                }
+            }
+        }
+    }
+}
+
+.add-conference, .user-info, .user-setting{
+    &__title{
+        padding: 45px 0px 25px 20px;
+        font-weight: 500;
+        font-size: 36px;
+    }
+    &__form{
+        padding: 20px 20px;
+        &-name{
+            color: #000;
+            font-weight: 500;
+            margin-bottom: 6px;
+        }
+        &-input{
+            margin-bottom: 30px;
+            input{
+                border: none;
+                border-radius: 4px;
+                width: 100%;
+                padding: 0 20px;
+                background-color: #f4f5f8;
+                height: 50px;
+                outline: none;  
+                &:focus{
+                    border: 2px solid $bg;
+                }
+            }
+            input[type="date"], input[type="time"] {
+                max-width: 320px;
+            }
+        }
+        button{
+            width: 190px;
+            height: 50px;
+            border: none;
+            background-color: $bg;
+            color: #fff;
+            outline: none;
+            font-weight: 500;
+            font-size: 15px;
+            cursor: pointer;
+        }
+    }
+}
+.user-info__form{
+    textarea{
+        width: 100%;
+        resize: none;
+        border-radius: 4px;
+        padding: 3px 5px;
+        &:focus{
+            outline: none;
+            border: 2px solid $bg;
+        }
+    }
+}
+.user-info__form-inner{
+    display: flex;
+    &-left{
+        max-width: 460px;
+        flex-grow: 1;
+        margin-right: 70px;
+    }
+    img{
+        width: 140px;
+        height: 140px;
+        object-fit: cover;
+    }
+}
+.user-setting{
+    &__title{
+        margin-bottom: 40px;
+    }
+    &__type-account{
+        padding-left: 20px;
+        font-style: italic;
+    }
+    &__type-account-title{
+        padding-left: 20px;
+        color: #000;
+        font-weight: 500;
+        margin-bottom: 10px;
+    }
+    a{
+        margin: 10px 0px 0px 20px;
+        text-align: center;
+        padding-top: 10px;
+        width: 190px;
+        height: 50px;
+        border: none;
+        background-color: $bg;
+        color: #fff;
+        outline: none;
+        font-weight: 500;
+        font-size: 15px;
+        cursor: pointer;
+    }
+}
+
+
+// End user-page
