@@ -626,5 +626,139 @@
     }
 }
 
-
 // End user-page
+
+// Start room-page
+.room-page{
+    background-color: #f4f6f5;
+}
+.room-page__inner{
+    display: flex;
+    padding: 110px 0px 115px;
+    justify-content: space-between;
+}
+.room-page__content{
+    background-color: #fff;
+    border: 1px solid #dedede;
+    max-width: 840px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+.content-video{
+    width: 100%;
+    text-align: center;
+    padding: 50px 10px;
+    img{
+        width: 300px;
+        height: 300px;
+        //Редакт
+        margin-bottom: 150px;
+    }
+}
+.content-functions{
+    text-align: center;
+    width: 100%;
+    background-color: #2196f3;
+    padding: 20px 0px;
+    ul li{
+        display: inline-block;
+        margin: 0 10px;
+        border-radius: 50%;
+        background: #fff;
+        width: 65px;
+        height: 65px;
+    }
+    a{
+        width: inherit;
+        height: inherit;
+        display: flex;
+    }
+    img{
+        width: 40px;
+        height: 40px;
+        align-self: center;
+        margin: auto;
+    }
+}
+.room-page__block{
+    background-color: #fff;
+    border: 1px solid #dedede;
+    width: 300px;
+    margin-bottom: 20px;
+    &-title{
+        padding: 24px 0px 24px 30px;
+        font-size: 20px;
+        font-weight: 700;
+        color: #263238;
+    }
+}
+.room-page__communicate{
+    margin-left: 30px;
+    display: flex;
+    flex-direction: column;
+}
+.communicate-items{
+    background-color: #fff;
+    border: 1px solid #dedede;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    position: relative;
+    &-nav{
+        display: flex;
+        flex-wrap: wrap;
+        background: #9ba8ba;
+        margin: 0;
+        border-bottom: 1px solid lightgray;
+    }
+    &-link{
+        padding: 8px 12px;
+        color: #fff;
+        text-align: center;
+        flex-shrink: 0;
+        flex-grow: 1;
+    }
+    &-active{
+        background: #4b79bb;
+        cursor: default;
+    }
+    &-link:not(&-active):hover,
+    &-link:not(&-active):focus {
+      background-color: #a8b5c7;
+    }
+    &-content{
+        padding: 5px 5px;
+        display: flex;
+    }
+    &-pane {
+        flex-grow: 1;
+        display: none;
+      }
+  
+    &-pane-show {
+        display: block;
+    }
+}
+.chat-input{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 10px 10px;
+    border-top: 3px solid #2196f3;;
+    textarea{
+        resize: none;
+        width: 100%;
+    }
+    a{
+        padding: 5px 0px;
+        text-align: center;
+        width: 100%;
+        font-size: 12px;
+        color: #fff;
+        background-color: #4b79bb;
+    }
+}
+
+//End room-page
