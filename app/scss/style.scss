@@ -675,8 +675,8 @@
         display: flex;
     }
     img{
-        width: 40px;
-        height: 40px;
+        width: 30px;
+        height: 30px;
         align-self: center;
         margin: auto;
     }
@@ -713,19 +713,20 @@
         border-bottom: 1px solid lightgray;
     }
     &-link{
+        cursor: pointer;
         padding: 8px 12px;
         color: #fff;
         text-align: center;
         flex-shrink: 0;
         flex-grow: 1;
     }
-    &-active{
+    &-link.active{
         background: #4b79bb;
         cursor: default;
     }
     &-link:not(&-active):hover,
     &-link:not(&-active):focus {
-      background-color: #a8b5c7;
+      background-color: #658cc2;
     }
     &-content{
         padding: 5px 5px;
@@ -735,8 +736,7 @@
         flex-grow: 1;
         display: none;
       }
-  
-    &-pane-show {
+    &-pane.active {
         display: block;
     }
 }
