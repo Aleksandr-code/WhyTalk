@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node index.js",
+    "dev": "nodemon index.js"
   },
   "author": "Alexandr Malets",
   "license": "ISC",
@@ -18,7 +19,11 @@
     "gulp-sass": "^4.1.0",
     "gulp-uglify": "^3.0.2",
     "magnific-popup": "^1.1.0",
+    "nodemon": "^2.0.7",
     "normalize.css": "^8.0.1"
   },
-  "dependencies": {}
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongoose": "^5.12.2"
+  }
 }
