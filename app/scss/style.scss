@@ -10,13 +10,12 @@
     align-items: center;
     height: 90px;
 }
-.header__menu{
-    margin-left: auto;
-    margin-right: 90px;   
-}
 .header__box{
     display: flex;
     align-items: center;
+}
+.header__burger-menu{
+    display: none;
 }
 .header__btn{
     padding: 4px;
@@ -45,6 +44,7 @@
     width: 72px;
     background-color: #e74c3c;
     margin-left: 30px;
+    vertical-align: text-bottom;
 }
 .user{
     width: 170px;
@@ -611,7 +611,7 @@
         margin-bottom: 10px;
     }
     a{
-        margin: 10px 0px 0px 20px;
+        margin: 10px 0px 10px 20px;
         text-align: center;
         padding-top: 10px;
         width: 190px;
@@ -650,8 +650,8 @@
     text-align: center;
     padding: 50px 10px;
     img{
-        width: 300px;
-        height: 300px;
+        width: 280px;
+        height: 280px;
         //Редакт
         margin-bottom: 150px;
     }
@@ -762,3 +762,5 @@
 }
 
 //End room-page
+
+@import 'media';
