@@ -2,7 +2,7 @@
     <div class="container">
         <div class="header__inner">
             <div class="header__logo">
-                <a href="#">
+                <a href="/">
                     <img src="/images/logo.png" alt="">
                 </a>
             </div>
@@ -15,7 +15,7 @@
                 <div class="header__box header__user">
                     <a class="header__btn header__btn-tariff" href="#">Тарифные планы</a>
                     <div class="header__box-column">
-                        <a class="user" href="#">
+                        <a class="user" href="/user">
                             <div class="user__inner">
                                 <div class="user__images">
                                     <img src="/images/user-photo.jpg" alt="">
@@ -31,8 +31,8 @@
             {{else}}
                 <div class="header__box">
                     <a class="header__btn header__btn-tariff" href="#">Тарифные планы</a>
-                    <a class="header__btn header__btn-login" href="#">Вход</a>
-                    <a class="header__btn header__btn-register" href="#">Регистрация</a>
+                    <a class="header__btn header__btn-login" href="/auth/login">Вход</a>
+                    <a class="header__btn header__btn-register" href="/auth/register">Регистрация</a>
                 </div>
             {{/if}}
            

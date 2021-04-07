@@ -1,7 +1,8 @@
 const {Router} = require('express')
+const notAuth = require('../middleware/notAuth')
 const router = Router()
 
-router.get('/', async (req, res) => {
+router.get('/', notAuth, async (req, res) => {
     res.render('user', {
         title: 'Личный кабинет |'
     })

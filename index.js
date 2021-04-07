@@ -23,17 +23,23 @@ const hbs = exphbs.create({
     }
 })
 
+const store = new MongoStore({
+    collection: 'sessions',
+    uri: MONGODB_URI
+})
+
 app.engine('hbs', hbs.engine)
 app.set('view engine', 'hbs')
 app.set('views', 'views')
 
 app.use(express.static(path.join(__dirname,'/app')))
-// app.use(express.urlencoded({extended:true}))
+app.use(express.urlencoded({extended:true}))
 
 app.use(session({
     secret:'any secret value',
     resave: false,
-    saveUninitialized: false
+    saveUninitialized: false,
+    store
 }))
 
 app.use(varMiddleware)
@@ -47,21 +53,11 @@ const PORT = process.env.PORT || 3000
 
 async function start(){
     try{
-        // await mongoose.connect(MONGODB_URI, {
-        //     useNewUrlParser: true,
-        //     useUnifiedTopology: true,
-        //     useFindAndModify: false
-        // })
-        // const candidate = await User.findOne()
-        // console.log(candidate)
-        // if (!candidate){
-        //     const user = new User({
-        //         email: 'Aleksandr.chess@mail.ru',
-        //         firstName: 'Aleksandr',
-        //         password: '123'
-        //     })
-        //     await user.save()
-        // }
+        await mongoose.connect(MONGODB_URI, {
+            useNewUrlParser: true,
+            useUnifiedTopology: true,
+            useFindAndModify: false
+        })
         app.listen(PORT, ()=> {
             console.log(`Server is running on ${PORT} port`)
         })
