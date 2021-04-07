@@ -9,6 +9,8 @@ const homeRoutes = require('./routes/home')
 const authRoutes = require('./routes/auth')
 const usersRoutes = require('./routes/users')
 const roomsRoutes = require('./routes/rooms')
+const User = require('./models/user')
+const varMiddleware = require('./middleware/variables')
 
 const MONGODB_URI = `mongodb+srv://Aleksandr:0v9tgCVWtNRkFKdT@cluster0.4qt7w.mongodb.net/WhyTalk`
 
@@ -28,6 +30,14 @@ app.set('views', 'views')
 app.use(express.static(path.join(__dirname,'/app')))
 // app.use(express.urlencoded({extended:true}))
 
+app.use(session({
+    secret:'any secret value',
+    resave: false,
+    saveUninitialized: false
+}))
+
+app.use(varMiddleware)
+
 app.use('/', homeRoutes)
 app.use('/auth', authRoutes)
 app.use('/user', usersRoutes)
@@ -42,7 +52,16 @@ async function start(){
         //     useUnifiedTopology: true,
         //     useFindAndModify: false
         // })
-        // console.log('Connect DB')
+        // const candidate = await User.findOne()
+        // console.log(candidate)
+        // if (!candidate){
+        //     const user = new User({
+        //         email: 'Aleksandr.chess@mail.ru',
+        //         firstName: 'Aleksandr',
+        //         password: '123'
+        //     })
+        //     await user.save()
+        // }
         app.listen(PORT, ()=> {
             console.log(`Server is running on ${PORT} port`)
         })

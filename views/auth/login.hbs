@@ -2,7 +2,7 @@
         <div class="container">
             <div class="banner-path__inner">
                 <div class="banner-path__inner-link">
-                    Home  /  
+                    Auth  /  
                     <span>Login</span> 
                 </div>
                 <div class="banner-path__inner-name">
@@ -20,18 +20,18 @@
                         <div class="preform__form-title">Войти в WhyTalk</div>
                         <div class="preform__form-subtitle">Для авторизации необходимо ввести данные</div>   
                     </div>
-                    <form action="">
+                    <form action="/auth/login" method="POST">
                         <div class="preform__form-input-name">
-                           Адрес эл.почты 
+                            <label for="email">Адрес эл.почты</label>
                         </div>
                         <div class="preform__form-input">
-                            <input type="email" placeholder="Введите e-mail..." required>
+                            <input id="email" name="email" type="email" placeholder="Введите e-mail..." required>
                         </div>
                         <div class="preform__form-input-name">
-                            Пароль
+                            <label for="password">Пароль</label>
                         </div>
                         <div class="preform__form-input">
-                            <input type="password" placeholder="Введите пароль..." required>
+                            <input id="password" name="password" type="password" placeholder="Введите пароль..." required>
                         </div>
                         <div class="preform__form-input">
                             <input type="checkbox"><span>Запомнить меня</span>
@@ -43,7 +43,7 @@
                             Забыли <a href="#">пароль?</a> 
                         </div>
                         <div class="preform__form-register">
-                            Ещё нет <a href="">аккаунта?</a> 
+                            Ещё нет <a href="#">аккаунта?</a> 
                         </div>
                     </div>
                 </div>

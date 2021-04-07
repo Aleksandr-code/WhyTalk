@@ -2,7 +2,7 @@
         <div class="container">
             <div class="banner-path__inner">
                 <div class="banner-path__inner-link">
-                    Home  /  
+                    Auth  /  
                     <span>Register</span> 
                 </div>
                 <div class="banner-path__inner-name">
@@ -23,41 +23,41 @@
                             всего несколько минут
                         </div>   
                     </div>
-                    <form action="">
+                    <form action="/auth/register" method="POST">
                         <div class="preform__form-input-name">
-                            Имя
+                            <label for="firstName">Имя</label>
                          </div>
                          <div class="preform__form-input">
-                             <input type="text" placeholder="Введите имя..." required>
+                            <input id="firstName" name="firstName" type="text" placeholder="Введите имя..." required>
                          </div>
                          <div class="preform__form-input-name">
-                            Фамилия
+                            <label for="lastName">Фамилия</label>
                          </div>
                          <div class="preform__form-input">
-                             <input type="text" placeholder="Введите фамилию..." required>
+                            <input id="lastName" name="lastName" type="text" placeholder="Введите фамилию..." required>
                          </div>
                          <div class="preform__form-input-name">
-                            Электронная почта 
+                            <label for="email">Электронная почта</label>
                          </div>
                          <div class="preform__form-input">
-                             <input type="email" placeholder="Email" required>
+                            <input id="email" name="email" type="email" placeholder="Email" required>
                          </div>
                         <div class="preform__form-input-name">
-                            Пароль
+                            <label for="password">Пароль</label>
                         </div>
                         <div class="preform__form-input">
-                            <input type="password" placeholder="Введите пароль..." required>
+                            <input id="password" name="password" type="password" placeholder="Введите пароль..." required>
                         </div>
                         <div class="preform__form-input-name">
-                            Подтвердите пароль
+                            <label for="confirm">Подтвердите пароль</label>
                         </div>
                         <div class="preform__form-input">
-                            <input type="password" placeholder="Введите пароль..." required>
+                            <input id="confirm" name="confirm" type="password" placeholder="Введите пароль..." required>
                         </div>
                         <button type="submit">Зарегистрироваться</button>
                     </form>
                     <div class="preform__form-auth">
-                            У вас уже есть аккаунт? <a href="">Авторизоваться</a> 
+                            У вас уже есть аккаунт? <a href="#">Авторизоваться</a> 
                     </div>
                 </div>
             </div>
