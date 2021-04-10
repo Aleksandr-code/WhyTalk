@@ -21,6 +21,9 @@
                         <div class="preform__form-subtitle">Для авторизации необходимо ввести данные</div>   
                     </div>
                     <form action="/auth/login" method="POST">
+                        {{#if error}}
+                            <div class="preform__form-error">{{error}}</div>
+                        {{/if}}
                         <div class="preform__form-input-name">
                             <label for="email">Адрес эл.почты</label>
                         </div>
@@ -36,6 +39,7 @@
                         <div class="preform__form-input">
                             <input type="checkbox"><span>Запомнить меня</span>
                         </div>
+                        <input type="hidden" name="_csrf" value={{csrf}}>
                         <button type="submit">Войти</button>
                     </form>
                     <div class="preform__form-help">

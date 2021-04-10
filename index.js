@@ -1,5 +1,7 @@
 const express = require('express')
 const path = require('path')
+const csrf = require('csurf')
+const flash = require('connect-flash')
 const exphbs = require('express-handlebars')
 const session = require('express-session')
 const MongoStore = require('connect-mongodb-session')(session)
@@ -9,7 +11,6 @@ const homeRoutes = require('./routes/home')
 const authRoutes = require('./routes/auth')
 const usersRoutes = require('./routes/users')
 const roomsRoutes = require('./routes/rooms')
-const User = require('./models/user')
 const varMiddleware = require('./middleware/variables')
 
 const MONGODB_URI = `mongodb+srv://Aleksandr:0v9tgCVWtNRkFKdT@cluster0.4qt7w.mongodb.net/WhyTalk`
@@ -41,7 +42,8 @@ app.use(session({
     saveUninitialized: false,
     store
 }))
-
+app.use(csrf())
+app.use(flash())
 app.use(varMiddleware)
 
 app.use('/', homeRoutes)

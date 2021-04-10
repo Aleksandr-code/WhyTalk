@@ -1,11 +1,13 @@
 const {Router} = require('express')
 const authenticated = require('../middleware/authenticated')
+const bcrypt = require('bcryptjs')
 const User = require('../models/user')
 const router = Router()
 
 router.get('/login', authenticated, async (req, res) => {
     res.render('auth/login', {
-        title: 'Авторизация |'
+        title: 'Авторизация |',
+        error: req.flash('error')
     })
 })
 
@@ -20,7 +22,7 @@ router.post('/login', authenticated, async (req, res) => {
         const {email, password} = req.body
         const candidate = await User.findOne({email})
         if(candidate){
-            const areSame = password === candidate.password
+            const areSame = await bcrypt.compare(password, candidate.password)
             if(areSame){
                 req.session.user = candidate
                 req.session.isAuthenticated = true
@@ -31,9 +33,11 @@ router.post('/login', authenticated, async (req, res) => {
                     res.redirect('/user')
                 })
             } else {
+                req.flash('error', 'Неверный пароль')
                 res.redirect('/auth/login')
             }
         } else {
+            req.flash('error', 'Такого пользователя не существует')
             res.redirect('/auth/login')
         }
 
@@ -45,7 +49,8 @@ router.post('/login', authenticated, async (req, res) => {
 
 router.get('/register', authenticated, async (req, res) => {
     res.render('auth/register', {
-        title: 'Регистрация |'
+        title: 'Регистрация |',
+        error: req.flash('error')
     })
 })
 
@@ -55,10 +60,12 @@ router.post('/register', authenticated, async (req, res) => {
         const candidate = await User.findOne({email})
 
         if(candidate){
-            res.redirect('/auth/login')
+            req.flash('error', 'Пользователь с таким email уже существует')
+            res.redirect('/auth/register')
         } else {
+            const hashPassword = await bcrypt.hash(password, 10)
             const user = new User({
-                email, password, firstName, lastName
+                email, password: hashPassword, firstName, lastName
             })
             await user.save()
             res.redirect('/auth/login')

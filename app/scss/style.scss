@@ -389,6 +389,16 @@
             color: $bg;
         } 
     }
+    &-error{
+        background: #f44336;
+        padding: 10px 10px 20px;
+        margin-bottom: 20px;
+        text-align: center;
+        color: white;
+        font-weight: 500;
+        border-radius: 5px;
+        font-size: 14px;
+    }
 }
 
 //End login-page and register-page

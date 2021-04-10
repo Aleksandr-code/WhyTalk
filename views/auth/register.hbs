@@ -24,6 +24,9 @@
                         </div>   
                     </div>
                     <form action="/auth/register" method="POST">
+                        {{#if error}}
+                            <div class="preform__form-error">{{error}}</div>
+                        {{/if}}
                         <div class="preform__form-input-name">
                             <label for="firstName">Имя</label>
                          </div>
@@ -54,6 +57,7 @@
                         <div class="preform__form-input">
                             <input id="confirm" name="confirm" type="password" placeholder="Введите пароль..." required>
                         </div>
+                        <input type="hidden" name="_csrf" value={{csrf}}>
                         <button type="submit">Зарегистрироваться</button>
                     </form>
                     <div class="preform__form-auth">
