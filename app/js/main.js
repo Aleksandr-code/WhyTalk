@@ -49,4 +49,44 @@ jsLinks.forEach(function(link){
 })
 
 
+// Работа с WebRTC
+let constraints = { audio: true, video: { width: 1280, height: 720 }};
+let startRTC = document.querySelector('.content-video-start')
+if(startRTC){
+  startRTC.addEventListener('click', ()=> {
+    navigator.mediaDevices.getUserMedia(constraints)
+    .then(function(mediaStream) {
+      let video = document.querySelector('video');
+      video.srcObject = mediaStream;
+      video.onloadedmetadata = function(e) {
+        video.play();
+      };
+    })
+    .catch(function(err) { console.log(err.name + ": " + err.message); }); 
+  })
+}
+
+let shareRTC = document.querySelector('.content-functions-share')
+if(shareRTC){
+  shareRTC.addEventListener('click', startCapture)
+}
+async function startCapture(displayMediaOptions) {
+  let captureStream = null;
+
+  try {
+    captureStream = await navigator.mediaDevices.getDisplayMedia(displayMediaOptions);
+    let content_video = document.querySelector('.content-video');
+    let video = document.createElement('video')
+    content_video.prepend(video)
+    video.srcObject = captureStream;
+    video.onloadedmetadata = function(e) {
+      video.play();
+    };
+  } catch(err) {
+    console.error("Error: " + err);
+  }
+  return captureStream;
+}
+
+
 
