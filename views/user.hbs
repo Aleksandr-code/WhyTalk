@@ -39,20 +39,8 @@
                 </aside>
     
                 <div class="user-page__content">
-                    <div class="no-conference" style="display: none;">
-                        <div class="no-conference__img">
-                            <img src="/images/no-conference-img.png" alt="">
-                        </div>
-                        <div class="no-conference__title">
-                            Конференции не найдены
-                        </div>
-                        <div class="no-conference__subtitle">
-                            Для появления списка конференций создайте новую
-                        </div>
-                        <a class="no-conference__button" href="#">Создать</a>
-                    </div>
-
-                    <div class="list-conference" style="display: none;">
+                    {{#if conferences.length}}
+                    <div class="list-conference">
                         <div class="list-conference__title">
                             Список конференций
                         </div>
@@ -64,31 +52,21 @@
                                     <th>Время</th>
                                     <th>Редактировать</th>
                                     <th>Удалить</th>
+                                    <th>Запуск</th>
                                 </tr>
+                                {{#each conferences}}
                                 <tr>
-                                    <td>TableData</td>
-                                    <td>TableData</td>
-                                    <td>TableData</td>
+                                    <td>{{title}}</td>
+                                    <td>{{dateTime}}</td>
+                                    <td>{{dateTime}}</td>
                                     <td><a href="#">редактировать</a></td>
                                     <td><a href="#">удалить</a></td>
+                                    <td><a href="/room/{{_id}}">начать</a></td>
                                 </tr>
-                                <tr>
-                                    <td>TableData</td>
-                                    <td>TableData</td>
-                                    <td>TableData</td>
-                                    <td><a href="#">редактировать</a></td>
-                                    <td><a href="#">удалить</a></td>
-                                </tr>
-                                <tr>
-                                    <td>TableData</td>
-                                    <td>TableData</td>
-                                    <td>TableData</td>
-                                    <td><a href="#">редактировать</a></td>
-                                    <td><a href="#">удалить</a></td>
-                                </tr>
+                                {{/each}}
                             </table>
                         </div>
-                        <div class="list-conference__pagination">
+                        <div class="list-conference__pagination" style="display: none;">
                             <ul class="pagination__list">
                                 <li><a class="active" href="#">1</a></li>
                                 <li><a href="#">2</a></li>
@@ -97,31 +75,46 @@
                               </ul>
                         </div>
                     </div>
-
+                    {{else}}
+                    <div class="no-conference">
+                        <div class="no-conference__img">
+                            <img src="/images/no-conference-img.png" alt="">
+                        </div>
+                        <div class="no-conference__title">
+                            Конференции не найдены
+                        </div>
+                        <div class="no-conference__subtitle">
+                            Для появления списка конференций создайте новую
+                        </div>
+                        <a class="no-conference__button" href="#">Создать</a>
+                    </div>
+                    {{/if}}
                     <div class="add-conference" style="display: none;">
                         <div class="add-conference__title">
                             Создание новой конференции
                         </div>
                         <div class="add-conference__form">
-                            <form action="">
+                            <form action="/user/conference/add" method="POST">
                                 <div class="add-conference__form-name">
-                                    Название конференции 
+                                    <label for="title">Название конференции</label>
                                 </div>
                                 <div class="add-conference__form-input">
-                                     <input type="text" placeholder="Введите (при желании) имя концеренции здесь ...">
+                                    <input id="title" name="title" type="text" placeholder="Введите (при желании) имя концеренции здесь ...">
                                 </div>
-                                <div class="add-conference__form-name">
-                                    Дата начала 
-                                </div>
-                                <div class="add-conference__form-input">
-                                    <input type="date">
-                                </div>
-                                <div class="add-conference__form-name">
-                                    Время начала 
+                                {{!-- <div class="add-conference__form-name">
+                                    <label for="date">Дата начала</label>
                                 </div>
                                 <div class="add-conference__form-input">
-                                    <input type="time">
+                                    <input id="date" name="date" type="date">
+                                </div> --}}
+                                <div class="add-conference__form-name">
+                                    <label for="time">Время начала</label> 
                                 </div>
+                                <div class="add-conference__form-input">
+                                    <input id="time" name="dateTime" type="datetime-local">
+                                </div>
+                                {{!-- <input type="hidden" name="dateTime" type="datetime-local"> --}}
+                                <input type="hidden" name="_csrf" value={{csrf}}>
                                 <button type="submit">Сохранить</button>
                             </form>
                         </div>
@@ -175,7 +168,7 @@
                         </div>
                     </div>
 
-                    <div class="user-setting">
+                    <div class="user-setting" style="display: none;">
                         <div class="user-setting__title">
                             Настройки аккаунта
                         </div>

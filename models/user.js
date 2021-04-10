@@ -16,15 +16,15 @@ const userSchema = new Schema({
     resetTokenExp: Date,
     typeAccount: String,
     aboutMyselfInformation: String,
-    // confences:[
-    //     {
-    //         conferenceId : {
-    //             type: Schema.Types.ObjectId,
-    //             ref: 'Conference',
-    //             require: true,
-    //         }
-    //     }
-    // ]
+    confences:[
+        {
+            conferenceId : {
+                type: Schema.Types.ObjectId,
+                ref: 'Conference',
+                require: true,
+            }
+        }
+    ]
 
 })
 

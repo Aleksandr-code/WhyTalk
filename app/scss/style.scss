@@ -565,7 +565,7 @@
                     border: 2px solid $bg;
                 }
             }
-            input[type="date"], input[type="time"] {
+            input[type="date"], input[type="time"], input[type="datetime-local"] {
                 max-width: 320px;
             }
         }

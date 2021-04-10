@@ -65,7 +65,7 @@ router.post('/register', authenticated, async (req, res) => {
         } else {
             const hashPassword = await bcrypt.hash(password, 10)
             const user = new User({
-                email, password: hashPassword, firstName, lastName
+                email, password: hashPassword, firstName, lastName, conference: []
             })
             await user.save()
             res.redirect('/auth/login')
