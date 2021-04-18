@@ -8,13 +8,21 @@ router.get('/', notAuth, async (req, res) => {
         const conferences = await Conference.find({'userId': req.session.user._id})
         .populate('userId', 'email')
 
-        res.render('user', {
+        res.render('conferences-list', {
+            layout: 'user-layout',
             title: 'Личный кабинет |',
             conferences
         })
     } catch (err) {
         console.log(err)
     }
+})
+
+router.get('/conference/add', async (req, res) => {
+    res.render('conferences-add', {
+        layout: 'user-layout',
+        title: 'Личный кабинет |'
+    })
 })
 
 router.post('/conference/add', async (req, res) => {
@@ -29,6 +37,20 @@ router.post('/conference/add', async (req, res) => {
     } catch (err) {
         console.log(err)
     }
+})
+
+router.get('/information', async (req, res) => {
+    res.render('user-info', {
+        layout: 'user-layout',
+        title: 'Личный кабинет |'
+    })
+})
+
+router.get('/setting', async (req, res) => {
+    res.render('user-setting', {
+        layout: 'user-layout',
+        title: 'Личный кабинет |'
+    })
 })
 
 module.exports = router

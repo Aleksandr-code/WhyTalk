@@ -1,0 +1,58 @@
+{{> head }}
+
+<body>
+
+    {{> header}}
+
+    <section class="user-page">
+        <div class="container">
+            <div class="user-page__inner">
+
+                <aside class="user-page__aside">
+
+                    <div class="conference aside__item">
+                        <div class="aside__title">
+                            Конференции
+                        </div>
+                        <ul class="conference__list">
+                            <li>
+                                <a href="/user">Список конференций</a>
+                            </li>
+                            <li>
+                                <a href="/user/conference/add">Новая конференция</a>
+                            </li>
+                        </ul>
+                    </div>
+    
+                    <div class="profile aside__item">
+                        <div class="aside__title">
+                            Профиль 
+                        </div>
+                        <ul class="profile__list">
+                            <li>
+                                <a href="/user/information">Личная информация</a>
+                            </li>
+                            <li>
+                                <a href="/user/setting">Настройки аккаунта</a>
+                            </li>
+                        </ul>
+                    </div>
+    
+                    <div class="ad-banner aside__item">
+                        <img src="/images/ad-banner.jpg" alt="">
+                    </div>
+    
+                </aside>
+
+                <div class="user-page__content">
+                    {{{body}}}
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    {{> footer}}
+
+</body>
+</html>

@@ -1,0 +1,50 @@
+{{#if conferences.length}}
+    <div class="list-conference">
+        <div class="list-conference__title">
+            Список конференций
+        </div>
+        <div class="list-conference__table">
+            <table>
+                <tr>
+                    <th>Название конференции</th>
+                    <th>Дата</th>
+                    <th>Время</th>
+                    <th>Редактировать</th>
+                    <th>Удалить</th>
+                    <th>Запуск</th>
+                </tr>
+                {{#each conferences}}
+                <tr>
+                    <td>{{title}}</td>
+                    <td>{{dateTime}}</td>
+                    <td>{{dateTime}}</td>
+                    <td><a href="#">редактировать</a></td>
+                    <td><a href="#">удалить</a></td>
+                    <td><a href="/room/{{_id}}">начать</a></td>
+                </tr>
+                {{/each}}
+            </table>
+        </div>
+        <div class="list-conference__pagination" style="display: none;">
+            <ul class="pagination__list">
+                <li><a class="active" href="#">1</a></li>
+                <li><a href="#">2</a></li>
+                <li><a href="#">3</a></li>
+                <li><a href="#">4</a></li>
+                </ul>
+        </div>
+    </div>
+{{else}}
+    <div class="no-conference">
+        <div class="no-conference__img">
+            <img src="/images/no-conference-img.png" alt="">
+        </div>
+        <div class="no-conference__title">
+            Конференции не найдены
+        </div>
+        <div class="no-conference__subtitle">
+            Для появления списка конференций создайте новую
+        </div>
+        <a class="no-conference__button" href="/user/conference/add">Создать</a>
+    </div>
+{{/if}}

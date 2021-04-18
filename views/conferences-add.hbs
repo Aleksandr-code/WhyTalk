@@ -1,0 +1,30 @@
+<div class="add-conference">
+    <div class="add-conference__title">
+        Создание новой конференции
+    </div>
+    <div class="add-conference__form">
+        <form action="/user/conference/add" method="POST">
+            <div class="add-conference__form-name">
+                <label for="title">Название конференции</label>
+            </div>
+            <div class="add-conference__form-input">
+                <input id="title" name="title" type="text" placeholder="Введите (при желании) имя концеренции здесь ...">
+            </div>
+            {{!-- <div class="add-conference__form-name">
+                <label for="date">Дата начала</label>
+            </div>
+            <div class="add-conference__form-input">
+                <input id="date" name="date" type="date">
+            </div> --}}
+            <div class="add-conference__form-name">
+                <label for="time">Время начала</label> 
+            </div>
+            <div class="add-conference__form-input">
+                <input id="time" name="dateTime" type="datetime-local">
+            </div>
+            {{!-- <input type="hidden" name="dateTime" type="datetime-local"> --}}
+            <input type="hidden" name="_csrf" value={{csrf}}>
+            <button type="submit">Сохранить</button>
+        </form>
+    </div>
+</div>
