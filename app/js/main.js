@@ -62,7 +62,9 @@ if(startRTC){
         video.play();
       };
     })
-    .catch(function(err) { console.log(err.name + ": " + err.message); }); 
+    .catch(function(err) { 
+      console.log(err.name + ": " + err.message); 
+    }); 
   })
 }
 

@@ -18,8 +18,14 @@
                     <td>{{title}}</td>
                     <td>{{dateTime}}</td>
                     <td>{{dateTime}}</td>
-                    <td><a href="#">редактировать</a></td>
-                    <td><a href="#">удалить</a></td>
+                    <td><a href="/user/conference/edit/{{_id}}">редактировать</a></td>
+                    <td>
+                        <form action="/user/conference/remove" method="POST">
+                            <input type="hidden" name="id" value="{{_id}}">
+                            <input type="hidden" name="_csrf" value="{{@root.csrf}}">
+                            <button type="submit">удалить</button>
+                        </form>
+                    </td>
                     <td><a href="/room/{{_id}}">начать</a></td>
                 </tr>
                 {{/each}}

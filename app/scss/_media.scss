@@ -23,6 +23,9 @@
     }
     .user-info__form-inner{
         flex-wrap: wrap;
+        &-right{
+            margin-bottom: 20px;
+        }
     }
 }
 
@@ -141,6 +144,9 @@
     }
     .footer__item-social ul {
         width: 100%;
+    }
+    .user-info__form-inner-left{
+        margin-right: 0px;
     }
 }
 

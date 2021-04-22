@@ -3,26 +3,26 @@
         Личная информация
     </div>
     <div class="user-info__form">
-        <form action="">
+        <form action="/user/information" method="POST">
             <div class="user-info__form-inner">
                 <div class="user-info__form-inner-left">
                     <div class="user-info__form-name">
-                        Имя
+                        <label for="firstName">Имя</label>
                     </div>
                     <div class="user-info__form-input">
-                        <input type="text" placeholder="Введите имя..." required>
+                        <input type="text" id="firstName" name="firstName" placeholder="Введите имя..." required value="{{user.firstName}}">
                     </div>
                     <div class="user-info__form-name">
-                        Фамилия
+                        <label for="lastName">Фамилия</label>
                     </div>
                     <div class="user-info__form-input">
-                        <input type="text" placeholder="Введите фамилию..." required>
+                        <input type="text" id="lastName" name="lastName" placeholder="Введите фамилию..." required value="{{user.lastName}}">
                     </div>
                     <div class="user-info__form-name">
-                        Email
+                        <label for="email">Email</label>
                     </div>
                     <div class="user-info__form-input">
-                        <input type="text" placeholder="Email" readonly>
+                        <input type="text" id="email" name="email" placeholder="Email" readonly value="{{user.email}}">
                     </div>
                 </div>
                 <div class="user-info__form-inner-right">
@@ -36,11 +36,12 @@
                 </div>
             </div>
             <div class="user-info__form-name">
-                О себе
+                <label for="about">О себе</label>
                 <div class="user-info__form-textarea">
-                    <textarea name="" rows="8"></textarea>
+                    <textarea id="about" name="aboutMyselfInformation" rows="8"></textarea>
                 </div>
             </div>
+            <input type="hidden" name="_csrf" value="{{csrf}}">
             <button type="submit">Сохранить</button>
         </form>
     </div>
