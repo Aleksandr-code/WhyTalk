@@ -1,3 +1,4 @@
+const socket = io("/");
 // Меню (мобильная версия)
 document.querySelector('.header__burger-menu').addEventListener('click', function() {
   let header__box = document.querySelector('.header__box');
@@ -77,6 +78,7 @@ async function startCapture(displayMediaOptions) {
 
   try {
     captureStream = await navigator.mediaDevices.getDisplayMedia(displayMediaOptions);
+    console.log(captureStream);
     let content_video = document.querySelector('.content-video');
     let video = document.createElement('video')
     content_video.prepend(video)
@@ -84,6 +86,10 @@ async function startCapture(displayMediaOptions) {
     video.onloadedmetadata = function(e) {
       video.play();
     };
+    captureStream.getVideoTracks()[0].addEventListener('ended', () => {
+      // редактировать
+      video.parentNode.removeChild(video);
+    });
   } catch(err) {
     console.error("Error: " + err);
   }
@@ -91,4 +97,36 @@ async function startCapture(displayMediaOptions) {
 }
 
 
+// Сокеты - чат
+// socket.on("message", (userId) => {
+//   console.log('user connected', userId)
+// });
+const ROOM_ID = '123';
+const id = '12345';
+const userName = document.querySelector('.user__name').textContent;
+socket.emit("join-room", ROOM_ID, id, userName);
+
+let messages = [];
+let sendButton = document.querySelector('.chat-input-send');
+let inputMessage = document.querySelector('.chat-input-message');
+let chatWindow = document.querySelector('.chat-window');
+
+if(sendButton){
+  sendButton.addEventListener('click', sendMessage);
+}
+function sendMessage(){
+  if (inputMessage.value.length !== 0) {
+    socket.emit("message", inputMessage.value);
+    inputMessage.value = "";
+  }
+}
+
+socket.on("createMessage", (message, userName) => {
+  chatWindow.innerHTML =
+    chatWindow.innerHTML +
+    `<div class="message">
+        <b> <i><span> ${userName}: </span> </i> </b>
+        <span>${message}</span>
+    </div>`;
+});
 

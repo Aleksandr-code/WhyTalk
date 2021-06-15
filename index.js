@@ -7,6 +7,8 @@ const session = require('express-session')
 const MongoStore = require('connect-mongodb-session')(session)
 const app = express()
 const mongoose = require('mongoose')
+const http = require('http').Server(app)
+const io = require('socket.io')(http)
 const homeRoutes = require('./routes/home')
 const authRoutes = require('./routes/auth')
 const usersRoutes = require('./routes/users')
@@ -60,7 +62,19 @@ async function start(){
             useUnifiedTopology: true,
             useFindAndModify: false
         })
-        app.listen(PORT, ()=> {
+        io.on('connection', socket => {
+            socket.on('join-room', (roomId, userId, userName) => {
+                socket.join(roomId)
+                // socket.to(roomId).broadcast.emit('user-connected', userId)
+                socket.on("message", (message) => {
+                    io.to(roomId).emit("createMessage", message, userName);
+                });
+                // socket.on('disconnect', () => {
+                //   socket.to(roomId).broadcast.emit('user-disconnected', userId)
+                // })
+            })
+        })
+        http.listen(PORT, ()=> {
             console.log(`Server is running on ${PORT} port`)
         })
     }

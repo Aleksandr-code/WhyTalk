@@ -714,7 +714,7 @@
     border: 1px solid #dedede;
     display: flex;
     flex-direction: column;
-    flex-grow: 1;
+    // flex-grow: 1;
     position: relative;
     &-nav{
         display: flex;
@@ -742,33 +742,48 @@
     &-content{
         padding: 5px 5px;
         display: flex;
+        height: 525px; //
     }
     &-pane {
         flex-grow: 1;
         display: none;
       }
     &-pane.active {
-        display: block;
+        // display: block;
+        display: flex;
+        flex-direction: column;
+    }
+}
+.chat-window{
+    flex-grow: 1;
+    overflow-y: scroll;
+    .message{
+        max-width: 270px;
+        line-height: 20px;
+        margin-bottom: 2px;
     }
 }
 .chat-input{
-    position: absolute;
-    bottom: 0;
-    left: 0;
+    // position: absolute;
+    // bottom: 0;
+    // left: 0;
     width: 100%;
     padding: 10px 10px;
-    border-top: 3px solid #2196f3;;
-    textarea{
+    border-top: 3px solid #2196f3;
+    margin-top: 5px;
+    &-message{
         resize: none;
         width: 100%;
     }
-    a{
+    &-send{
         padding: 5px 0px;
         text-align: center;
         width: 100%;
         font-size: 12px;
         color: #fff;
         background-color: #4b79bb;
+        border-radius: 5px;
+        cursor: pointer;
     }
 }
 
