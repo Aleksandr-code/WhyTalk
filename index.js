@@ -14,6 +14,10 @@ const authRoutes = require('./routes/auth')
 const usersRoutes = require('./routes/users')
 const roomsRoutes = require('./routes/rooms')
 const varMiddleware = require('./middleware/variables')
+const { ExpressPeerServer } = require("peer");
+const peerServer = ExpressPeerServer(http, {
+  debug: true,
+});
 
 const MONGODB_URI = `mongodb+srv://Aleksandr:0v9tgCVWtNRkFKdT@cluster0.4qt7w.mongodb.net/WhyTalk`
 
@@ -35,6 +39,7 @@ app.engine('hbs', hbs.engine)
 app.set('view engine', 'hbs')
 app.set('views', 'views')
 
+app.use("/peerjs", peerServer);
 app.use(express.static(path.join(__dirname,'/app')))
 app.use(express.urlencoded({extended:true}))
 
@@ -65,13 +70,16 @@ async function start(){
         io.on('connection', socket => {
             socket.on('join-room', (roomId, userId, userName) => {
                 socket.join(roomId)
-                // socket.to(roomId).broadcast.emit('user-connected', userId)
+                socket.to(roomId).emit('user-connected', userId)
                 socket.on("message", (message) => {
                     io.to(roomId).emit("createMessage", message, userName);
                 });
-                // socket.on('disconnect', () => {
-                //   socket.to(roomId).broadcast.emit('user-disconnected', userId)
+                // socket.on('share', () => {
+                //     socket.to(roomId).emit('user-share', userId)
                 // })
+                socket.on('disconnect', () => {
+                  socket.to(roomId).emit('user-disconnected', userId)
+                })
             })
         })
         http.listen(PORT, ()=> {

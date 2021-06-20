@@ -660,11 +660,20 @@
     width: 100%;
     text-align: center;
     padding: 50px 10px;
+    flex-grow: 1;
+    &-grid{
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;    
+    }
     video{
-        width: 280px;
+        width: 380px;
         height: 280px;
+        object-fit: cover;
+        margin: 10px;
+        border-radius: 15px;
         //Редакт
-        margin-bottom: 150px;
+        // margin-bottom: 150px;
     }
 }
 .content-functions{

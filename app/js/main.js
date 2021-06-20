@@ -49,46 +49,99 @@ jsLinks.forEach(function(link){
   })
 })
 
+// PeerJs
+const peer = new Peer(undefined, {host:'peerjs.herokuapp.com', secure:true, port:443})
+const peers = {}
+const videoGrid = document.querySelector('.content-video-grid');
+const myVideo = document.createElement("video");
+
+const myShare = document.createElement("video");
+console.log(peer);
+
+const ROOM_ID = '123';
+const userName = document.querySelector('.user__name').textContent;
+
+peer.on("open", (id) => {
+  socket.emit("join-room", ROOM_ID, id, userName);
+});
 
 // Работа с WebRTC
-let constraints = { audio: true, video: { width: 1280, height: 720 }};
-let startRTC = document.querySelector('.content-video-start')
-if(startRTC){
-  startRTC.addEventListener('click', ()=> {
+let constraints = {audio: false, video: true};
+// let startRTC = document.querySelector('.content-video-start')
+// if(startRTC){
+//   startRTC.addEventListener('click', ()=> {
     navigator.mediaDevices.getUserMedia(constraints)
     .then(function(mediaStream) {
-      let video = document.querySelector('video');
-      video.srcObject = mediaStream;
-      video.onloadedmetadata = function(e) {
-        video.play();
-      };
+      addVideoStream(myVideo, mediaStream);
+      // let video = document.querySelector('video');
+      // video.srcObject = mediaStream;
+      // video.onloadedmetadata = function(e) {
+      //   video.play();
+      // };
+      peer.on("call", (call) => {
+        console.log(call, "call here");
+        call.answer(mediaStream);
+        const video = document.createElement("video");
+        call.on("stream", (userVideoStream) => {
+          addVideoStream(video, userVideoStream);
+        });
+        call.on('close', () => {
+          video.remove()
+        })
+        peers[call.peer] = call
+      });
+      socket.on("user-connected", (userId) => {
+        console.log('user coonected', userId)
+        connectToNewUser(userId, mediaStream);
+      });
+      console.log(peer)
     })
     .catch(function(err) { 
       console.log(err.name + ": " + err.message); 
     }); 
-  })
-}
+//   })
+// }
+
+
+socket.on('user-disconnected', userId => {
+  if (peers[userId]) peers[userId].close()
+})
 
 let shareRTC = document.querySelector('.content-functions-share')
 if(shareRTC){
-  shareRTC.addEventListener('click', startCapture)
+  shareRTC.addEventListener('click', startCapture);
 }
+let captureStream = null;
 async function startCapture(displayMediaOptions) {
-  let captureStream = null;
+  
 
   try {
     captureStream = await navigator.mediaDevices.getDisplayMedia(displayMediaOptions);
     console.log(captureStream);
-    let content_video = document.querySelector('.content-video');
-    let video = document.createElement('video')
-    content_video.prepend(video)
-    video.srcObject = captureStream;
-    video.onloadedmetadata = function(e) {
-      video.play();
-    };
+    addVideoStream(myShare, captureStream);
+    // let content_video_grid = document.querySelector('.content-video-grid');
+    // let video = document.createElement('video')
+    // content_video_grid.append(video)
+    // video.srcObject = captureStream;
+    // video.onloadedmetadata = function(e) {
+    //   video.play();
+    // };
+    // Редактировать, но работает
+    // socket.emit('share');
+    // socket.on('user-share', (userId) => {
+      console.log(peers);
+      for(key in peers){
+        let call = peer.call(key, captureStream);
+        console.log(call);
+      }
+      // const share = document.createElement("video");
+      // addVideoStream(share, captureStream);
+      console.log('ok');
+    // })
+
     captureStream.getVideoTracks()[0].addEventListener('ended', () => {
       // редактировать
-      video.parentNode.removeChild(video);
+      myShare.parentNode.removeChild(myShare);
     });
   } catch(err) {
     console.error("Error: " + err);
@@ -97,14 +150,35 @@ async function startCapture(displayMediaOptions) {
 }
 
 
+
+const addVideoStream = (video, stream) => {
+  video.srcObject = stream;
+  video.addEventListener("loadedmetadata", () => {
+    video.play();
+    videoGrid.append(video);
+  });
+};
+
+const connectToNewUser = (userId, stream) => {
+  const call = peer.call(userId, stream);
+  console.log(call);
+  const video = document.createElement("video");
+  call.on("stream", (userVideoStream) => {
+    addVideoStream(video, userVideoStream);
+  });
+  call.on('close', () => {
+    video.remove()
+  })
+  peers[userId] = call
+};
+
+
+
 // Сокеты - чат
 // socket.on("message", (userId) => {
 //   console.log('user connected', userId)
 // });
-const ROOM_ID = '123';
-const id = '12345';
-const userName = document.querySelector('.user__name').textContent;
-socket.emit("join-room", ROOM_ID, id, userName);
+
 
 let messages = [];
 let sendButton = document.querySelector('.chat-input-send');
@@ -130,3 +204,26 @@ socket.on("createMessage", (message, userName) => {
     </div>`;
 });
 
+// Вывод времени в комнате
+// let countTime = document.querySelector('.room-page__block-time');
+// startCountTime();
+function startCountTime() {
+  countTime.style.display = "inline";
+  callStartTime = Date.now();
+  setInterval(function printTime() {
+    callElapsedTime = Date.now() - callStartTime;
+    countTime.innerHTML = getTimeToString(callElapsedTime);
+  }, 1000);
+}
+function getTimeToString(time) {
+  let diffInHrs = time / 3600000;
+  let hh = Math.floor(diffInHrs);
+  let diffInMin = (diffInHrs - hh) * 60;
+  let mm = Math.floor(diffInMin);
+  let diffInSec = (diffInMin - mm) * 60;
+  let ss = Math.floor(diffInSec);
+  let formattedHH = hh.toString().padStart(2, "0");
+  let formattedMM = mm.toString().padStart(2, "0");
+  let formattedSS = ss.toString().padStart(2, "0");
+  return `${formattedHH}:${formattedMM}:${formattedSS}`;
+}
