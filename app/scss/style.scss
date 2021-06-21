@@ -664,7 +664,7 @@
     &-grid{
         display: flex;
         justify-content: center;
-        flex-wrap: wrap;    
+        flex-wrap: wrap;  
     }
     video{
         width: 380px;
@@ -677,28 +677,52 @@
     }
 }
 .content-functions{
-    text-align: center;
-    width: 100%;
     background-color: #2196f3;
     padding: 20px 0px;
-    ul li{
-        display: inline-block;
-        margin: 0 10px;
-        border-radius: 50%;
-        background: #fff;
-        width: 65px;
-        height: 65px;
-    }
-    a{
-        width: inherit;
-        height: inherit;
+    &-controls{
         display: flex;
+        justify-content: center;
+        div {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: #fff;
+            // max-width: 120px;
+            margin: 0 5px;
+            padding: 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            max-width: 120px;
+            text-align: center;
+            span{
+                margin-top: 5px;
+                font-size: 16px;
+                word-wrap: break-word;
+                line-height: 20px;
+            }
+        }
+        div:hover{
+            background-color: #389ff3;
+        }
     }
+    // ul li{
+        // display: inline-block;
+        // margin: 0 10px;
+        // // border-radius: 50%;
+        // // background: #fff;
+        // width: 65px;
+        // height: 65px;
+    // }
+    // a{
+    //     width: inherit;
+    //     height: inherit;
+    //     display: flex;
+    // }
     img{
         width: 30px;
         height: 30px;
-        align-self: center;
-        margin: auto;
+        // align-self: center;
+        // margin: auto;
     }
 }
 .room-page__block{
@@ -767,9 +791,15 @@
     flex-grow: 1;
     overflow-y: scroll;
     .message{
-        max-width: 270px;
+        max-width: 285px;
         line-height: 20px;
-        margin-bottom: 2px;
+        margin-bottom: 5px;
+        word-wrap: break-word;
+        div {
+            background-color: #e4edf5;
+            border-radius: 5px;
+            padding: 5px 10px;
+        }
     }
 }
 .chat-input{
@@ -795,7 +825,41 @@
         cursor: pointer;
     }
 }
-
+.participants{
+    &-user{
+        display: flex;
+        list-style: none;
+        padding: 10px;
+        align-items: center;
+        &__avatar{
+            width: 34px;
+            height: 34px;
+            background-color: #73baf2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 17px;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        &__name{
+            color: #222222;
+            flex: 1;
+        }
+        &__media{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            img{
+                width: 20px;
+                height: 20px;
+            }
+            img:first-child{
+                margin-right: 10px;
+            }
+        }
+    }
+}
 //End room-page
 
 @import 'media';

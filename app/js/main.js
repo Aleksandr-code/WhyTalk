@@ -54,25 +54,28 @@ const peer = new Peer(undefined, {host:'peerjs.herokuapp.com', secure:true, port
 const peers = {}
 const videoGrid = document.querySelector('.content-video-grid');
 const myVideo = document.createElement("video");
-
 const myShare = document.createElement("video");
+let myVideoStream;
+// Убрать
+myVideo.muted = true;
 console.log(peer);
 
 const ROOM_ID = '123';
-const userName = document.querySelector('.user__name').textContent;
+const userName = document.querySelector('.user__name').textContent.trim();
 
 peer.on("open", (id) => {
   socket.emit("join-room", ROOM_ID, id, userName);
 });
 
 // Работа с WebRTC
-let constraints = {audio: false, video: true};
+let constraints = {audio: true, video: true};
 // let startRTC = document.querySelector('.content-video-start')
 // if(startRTC){
 //   startRTC.addEventListener('click', ()=> {
     navigator.mediaDevices.getUserMedia(constraints)
     .then(function(mediaStream) {
       addVideoStream(myVideo, mediaStream);
+      myVideoStream = mediaStream;
       // let video = document.querySelector('video');
       // video.srcObject = mediaStream;
       // video.onloadedmetadata = function(e) {
@@ -141,7 +144,9 @@ async function startCapture(displayMediaOptions) {
 
     captureStream.getVideoTracks()[0].addEventListener('ended', () => {
       // редактировать
-      myShare.parentNode.removeChild(myShare);
+      myShare.remove();
+      // Вызов emit который удает shareScreen
+      //myShare.parentNode.removeChild(myShare);
     });
   } catch(err) {
     console.error("Error: " + err);
@@ -157,6 +162,7 @@ const addVideoStream = (video, stream) => {
     video.play();
     videoGrid.append(video);
   });
+  video.ondblclick = toggleFullscreen;
 };
 
 const connectToNewUser = (userId, stream) => {
@@ -192,6 +198,7 @@ function sendMessage(){
   if (inputMessage.value.length !== 0) {
     socket.emit("message", inputMessage.value);
     inputMessage.value = "";
+    inputMessage.focus();
   }
 }
 
@@ -199,10 +206,72 @@ socket.on("createMessage", (message, userName) => {
   chatWindow.innerHTML =
     chatWindow.innerHTML +
     `<div class="message">
-        <b> <i><span> ${userName}: </span> </i> </b>
-        <span>${message}</span>
+        <div> 
+          <b>${userName}:</b> 
+          <span>${message}</span> 
+        </div>
     </div>`;
 });
+
+// Сокеты - список участников
+socket.on("participants", (users) => {
+  console.log(users);
+  const lists = document.querySelector(".participants");
+  lists.innerHTML = "";
+  lists.textContent = "";
+  users.forEach((user) => {
+    const list = document.createElement("li");
+    list.className = "participants-user";
+    list.innerHTML = `
+        <div class="participants-user__avatar">${user.name[0].toUpperCase()}</div>
+        <span class="participants-user__name">${user.name}</span>
+        <div class="participants-user__media">
+            <img src="/images/microphone-${user.audio === false ?  "solid-slash.svg" : "solid-grey.svg"}">
+            <img src="/images/video-${user.video === false ? "solid-slash.svg" : "solid-grey.svg"}">
+        </div>
+    `;
+
+    lists.append(list);
+  });
+});
+
+// Микрофон - вкл./выкл.
+document.querySelector('.content-functions-microphone').addEventListener('click', handleMicrophone);
+function handleMicrophone () {
+  const enabled = myVideoStream.getAudioTracks()[0].enabled;
+  const node = document.querySelector(".content-functions-microphone");
+
+  if (enabled) {
+      socket.emit("mute-mic");
+      myVideoStream.getAudioTracks()[0].enabled = false;
+      node.children[0].src = location.origin+'/images/microphone-solid-slash.svg';
+      node.children[1].innerHTML = 'Микрофон выкл.';
+  } else {
+      socket.emit("unmute-mic");
+      myVideoStream.getAudioTracks()[0].enabled = true;
+      node.children[0].src = location.origin+'/images/microphone-solid.svg';
+      node.children[1].innerHTML = 'Микрофон вкл.';
+  }
+};
+
+// Камера - вкл./выкл.
+document.querySelector('.content-functions-camera').addEventListener('click', handleVideo);
+function handleVideo () {
+  const enabled = myVideoStream.getVideoTracks()[0].enabled;
+  const node = document.querySelector(".content-functions-camera");
+
+  if (enabled) {
+      socket.emit("stop-video");
+      myVideoStream.getVideoTracks()[0].enabled = false;
+      node.children[0].src = location.origin+'/images/video-solid-slash.svg';
+      node.children[1].innerHTML = 'Видео выкл.';
+  } else {
+      socket.emit("play-video");
+      myVideoStream.getVideoTracks()[0].enabled = true;
+      node.children[0].src = location.origin+'/images/video-solid.svg';
+      node.children[1].innerHTML = 'Видео вкл.';
+  }
+};
 
 // Вывод времени в комнате
 // let countTime = document.querySelector('.room-page__block-time');
@@ -226,4 +295,19 @@ function getTimeToString(time) {
   let formattedMM = mm.toString().padStart(2, "0");
   let formattedSS = ss.toString().padStart(2, "0");
   return `${formattedHH}:${formattedMM}:${formattedSS}`;
+}
+
+
+// Полноэкранный показ
+
+function toggleFullscreen() {
+  //let elem = document.querySelector("video");
+
+  if (!document.fullscreenElement) {
+    this.requestFullscreen().catch(err => {
+      alert(`Error attempting to enable full-screen mode: ${err.message} (${err.name})`);
+    });
+  } else {
+    document.exitFullscreen();
+  }
 }

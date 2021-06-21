@@ -8,14 +8,14 @@
                             {{!-- <video poster="/images/webcam-icon.png"></video> --}}
                         </div> 
                         
-                        <div><button class="content-video-start">Тест</button></div>
+                        {{!-- <div><button class="content-video-start">Тест</button></div> --}}
                     </div>
                     <div class="content-functions">
-                        <ul>
-                            <li><a href="#"><img src="/images/camera.png" alt=""></a></li>
-                            <li><a href="#"><img src="/images/microphone.png" alt=""></a></li>
-                            <li><a class="content-functions-share"><img src="/images/screen-share.png" alt=""></a></li>
-                        </ul>
+                        <div class="content-functions-controls">
+                            <div class="content-functions-camera"><img src="/images/video-solid.svg" alt=""><span>Камера вкл.</span></div>
+                            <div class="content-functions-microphone"><img src="/images/microphone-solid.svg" alt=""><span>Микрофон вкл.</span></div>
+                            <div class="content-functions-share"><img src="/images/screen-share.png" alt=""><span>Демонстрация</span></div>
+                        </div>
                     </div>
                 </div>
 
@@ -39,7 +39,7 @@
                                 </div>
                             </div>
                             <div class="communicate-items-pane js-communicate-items-pane" data-tab="2">
-                                Содержимое 2...
+                                <div class="participants"></div>
                             </div>
                         </div>
                     </div>
