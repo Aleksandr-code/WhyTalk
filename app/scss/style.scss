@@ -730,11 +730,33 @@
     border: 1px solid #dedede;
     width: 300px;
     margin-bottom: 20px;
+    display: flex;
+    color: #263238;
+    padding: 10px 30px 10px;
+    justify-content: space-between;
+    align-items: center;
     &-title{
-        padding: 24px 0px 24px 30px;
+        // padding: 24px 0px 24px 30px;
         font-size: 20px;
         font-weight: 700;
-        color: #263238;
+    }
+    &-invite{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        border-radius: 5px;
+        padding: 5px;
+        cursor: pointer;
+        max-width: 120px;
+        text-align: center;
+        font-size: 15px;
+        img{
+            width: 25px;
+            height: 25px;
+        }
+    }
+    &-invite:hover{
+        background-color: #f4f6f7;
     }
 }
 .room-page__communicate{
@@ -808,17 +830,23 @@
     // left: 0;
     width: 100%;
     padding: 10px 10px;
-    border-top: 3px solid #2196f3;
+    border-top: 3px solid #9e9b9b;
     margin-top: 5px;
     &-message{
-        resize: none;
+        // resize: none;
         width: 100%;
+        padding: 5px 4px;
+        margin-bottom: 5px;
+    }
+    &-message:focus{
+        border: 2px solid #2196f3;
+        outline: none;
     }
     &-send{
         padding: 5px 0px;
         text-align: center;
         width: 100%;
-        font-size: 12px;
+        font-size: 11px;
         color: #fff;
         background-color: #4b79bb;
         border-radius: 5px;

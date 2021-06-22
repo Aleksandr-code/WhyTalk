@@ -124,6 +124,9 @@
             min-height: 610px;
         }
     }
+    .chat-window .message {
+        max-width: 760px;
+    }
 }
 
 @media (max-width: 660px){
