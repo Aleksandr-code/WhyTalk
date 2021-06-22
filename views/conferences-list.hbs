@@ -4,7 +4,7 @@
             Список конференций
         </div>
         <div class="list-conference__table">
-            <table>
+            {{!-- <table>
                 <tr>
                     <th>Название конференции</th>
                     <th>Дата</th>
@@ -29,7 +29,33 @@
                     <td><a href="/room/{{_id}}">начать</a></td>
                 </tr>
                 {{/each}}
-            </table>
+            </table> --}}
+            {{#each conferences}}
+            <div class="list-conference__item">
+                <div class="list-conference__item-img">
+                    <img src="images/conference-img.svg" alt="">
+                </div>
+                <div class="list-conference__item-info">
+                    <div class="list-conference__item-info-title">{{title}}</div>
+                    <div class="list-conference__item-info-datetime">
+                        Дата: <span class="datetime-js">{{dateTime}}</span>
+                    </div>    
+                </div>
+                <div class="list-conference__item-buttons">
+                        <button class="list-conference__item-buttons-start">
+                            <a href="/room/{{_id}}">начать</a>
+                        </button>
+                        <button class="list-conference__item-buttons-edit">
+                            <a href="/user/conference/edit/{{_id}}">редактировать</a>
+                        </button>
+                        <form action="/user/conference/remove" method="POST">
+                            <input type="hidden" name="id" value="{{_id}}">
+                            <input type="hidden" name="_csrf" value="{{@root.csrf}}">
+                            <button class="list-conference__item-buttons-delete" type="submit">удалить</button>
+                        </form>
+                </div>
+            </div>
+            {{/each}}
         </div>
         <div class="list-conference__pagination" style="display: none;">
             <ul class="pagination__list">

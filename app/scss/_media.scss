@@ -139,6 +139,17 @@
 
 }
 
+@media (max-width: 590px){
+    .list-conference__item{
+        padding: 20px 5px;
+        flex-wrap: wrap;
+        flex-direction: column;
+        &-info{
+            text-align: center;
+        }
+    }
+}
+
 @media (max-width: 520px){
     .footer__item:not(:first-child){
         min-width: 100%;
@@ -150,6 +161,19 @@
     }
     .user-info__form-inner-left{
         margin-right: 0px;
+    }
+}
+
+@media (max-width: 450px){
+    .content-video video {
+        width: 260px;
+        height: 200px;
+    }
+    .content-functions-controls {
+        flex-wrap: wrap;
+    }
+    .room-page__inner {
+        padding: 50px 0px;
     }
 }
 
