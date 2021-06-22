@@ -102,7 +102,8 @@ router.post('/information', notAuth, async (req, res) => {
 
         const toChange = {
             firstName: req.body.firstName,
-            lastName: req.body.lastName
+            lastName: req.body.lastName,
+            aboutMyselfInformation: req.body.aboutMyselfInformation,
             //Добавить аватар и обо мне
         }
 

@@ -104,10 +104,10 @@ async function start(){
                     });
                     io.in(roomId).emit("participants", users[roomId]);
                 });
-
-                // socket.on('share', () => {
-                //     socket.to(roomId).emit('user-share', userId)
-                // })
+                // Настроить демонстрацию
+                socket.on('stop-share', () => {
+                    socket.to(roomId).emit('delete-share', userId)
+                })
                 socket.on('disconnect', () => {
                   socket.to(roomId).emit('user-disconnected', userId);
                   users[roomId] = users[roomId].filter((user) => user.id !== userId);

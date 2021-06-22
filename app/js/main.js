@@ -28,10 +28,8 @@ document.querySelector('.header__burger-menu').addEventListener('click', functio
   if(dateTime){
     dateTime.forEach(element => {
         let date = new Date(element.textContent);
-        console.log(date);
         var options = {year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric'};
         element.textContent = Intl.DateTimeFormat('ru-RU', options).format(date);
     });
-      
   }
   

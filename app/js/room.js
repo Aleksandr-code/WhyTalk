@@ -127,6 +127,7 @@ async function startCapture(displayMediaOptions) {
     captureStream.getVideoTracks()[0].addEventListener('ended', () => {
       // редактировать
       myShare.remove();
+      socket.emit("stop-share");
       // Вызов emit который удает shareScreen
       //myShare.parentNode.removeChild(myShare);
     });
@@ -135,7 +136,10 @@ async function startCapture(displayMediaOptions) {
   }
   return captureStream;
 }
-
+// Настроить демонстрацию
+socket.on('delete-share', () => {
+  videoGrid.lastChild.remove();
+})
 
 
 const addVideoStream = (video, stream) => {
