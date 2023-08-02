@@ -19,7 +19,7 @@ const peerServer = ExpressPeerServer(http, {
   debug: true,
 });
 
-const MONGODB_URI = `mongodb+srv://Aleksandr:0v9tgCVWtNRkFKdT@cluster0.4qt7w.mongodb.net/WhyTalk`
+const MONGODB_URI = `MONGODB_URI`
 const users = {};
 
 const hbs = exphbs.create({
